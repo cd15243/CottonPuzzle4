@@ -1,0 +1,6 @@
+/Library
+/Temp
+/Logs
+*.csproj
+*.meta
+*.cache
