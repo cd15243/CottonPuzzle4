@@ -2,5 +2,4 @@
 /Temp
 /Logs
 *.csproj
-*.meta
 *.cache
