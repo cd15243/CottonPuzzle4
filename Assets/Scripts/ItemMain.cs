@@ -33,10 +33,14 @@ public class ItemMain : MonoBehaviour
         if(index == 0){
             LeftBtn.enabled = false;
             LeftBtn.interactable = false;
+            RightBtn.enabled = true;
+            RightBtn.interactable = true;
         }
         else if(index == BagManager.Instance.bagItemData.BagList.Count - 1){
             RightBtn.enabled = false;
             RightBtn.interactable = false;
+            LeftBtn.enabled = true;
+            LeftBtn.interactable = true;
         }
         else{
             LeftBtn.enabled = true;

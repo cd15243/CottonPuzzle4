@@ -12,4 +12,5 @@ public class BagSingleItemInfo{
     public int itemID;
     public string itemName;
     public Sprite sprite;
+    public bool isHasItem;
 }

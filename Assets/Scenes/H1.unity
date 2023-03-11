@@ -213,12 +213,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6f23471032923e43a6f18fea65c292c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e06c5fb458d11a449b9dd6f103ca0b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 1525657559}
   - component: {fileID: 1525657560}
   - component: {fileID: 1525657561}
+  - component: {fileID: 1525657562}
   m_Layer: 0
   m_Name: Collider1
   m_TagString: SceneTag
@@ -307,7 +308,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1525657558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4239271fcd0dfc4185eab357c19b3ca, type: 3}
+  m_Script: {fileID: 11500000, guid: c00ca948a6e1739498dd00db0aced413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1525657562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525657558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ec7b312aae388c4aa0b913673551599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toSceneName: H2

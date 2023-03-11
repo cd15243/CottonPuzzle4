@@ -29,6 +29,9 @@ public class BagManager : Singleton<BagManager>
         else if(itemClickDirection == ItemClickDirection.Right){
             ++tmpIndex;
         }
+        if (tmpIndex < 0 || tmpIndex > bagItemData.BagList.Count){
+            return;
+        }
         currentIndex = tmpIndex;
         BagSingleItemInfo tmpInfo = bagItemData.BagList[tmpIndex];
 

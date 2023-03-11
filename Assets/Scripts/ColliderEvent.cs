@@ -20,7 +20,7 @@ public class ColliderEvent : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0)){
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if(hit.collider != null)
+            if(hit.collider != null && hit.collider.name == this.name)
             {
                 Debug.Log("name = " + hit.transform.name + "tag = " + hit.transform.gameObject.tag);
                 if(hit.transform.gameObject.tag == "SceneTag"){
