@@ -55,6 +55,10 @@ public class H2ALogic : MonoBehaviour
                     //计算 线的方向
                     Quaternion targetRotation = Quaternion.FromToRotation(transform.right, direction);
                     line.transform.rotation *= targetRotation;
+
+                    //计算线的长度
+                    float lineLength = Mathf.Sqrt(Mathf.Pow(direction.x * 100,2) + Mathf.Pow(direction.y * 100,2));
+                    line.transform.localScale = new Vector3(lineLength/100 * 1.5f,1,1);
                 }
             }
         }
