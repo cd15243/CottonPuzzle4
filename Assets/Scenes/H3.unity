@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00ca948a6e1739498dd00db0aced413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickTypes: SCENECHANGE
 --- !u!114 &1511311425
 MonoBehaviour:
   m_ObjectHideFlags: 0

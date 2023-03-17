@@ -19,4 +19,14 @@ public class EventHandler
     public static void CallUpdateSingleItemInfoEvent(int index,BagSingleItemInfo bagSingleItemInfo){
         UpdateSingleItemInfoEvent?.Invoke(index,bagSingleItemInfo);
     }
+
+    public static event Action<int> H2ACIRCLEClickEvent;
+    public static void CallH2ACIRCLEClickEvent(int index){
+        H2ACIRCLEClickEvent?.Invoke(index);
+    }
+    
+    public static event Action H2AResetEvent;
+    public static void CallH2AResetEvent(){
+        H2AResetEvent?.Invoke();
+    }
 }
