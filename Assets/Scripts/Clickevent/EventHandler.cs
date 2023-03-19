@@ -29,4 +29,22 @@ public class EventHandler
     public static void CallH2AResetEvent(){
         H2AResetEvent?.Invoke();
     }
+    public static event Action DialogueEvent;
+    public static void CallDialogueEvent(){
+        DialogueEvent?.Invoke();
+    }
+    public static event Action ContinueDialogueEvent;
+    public static void CallContinueDialogueEvent(){
+        ContinueDialogueEvent?.Invoke();
+    }
+
+    public static event Action CloseDialogueEvent;
+    public static void CallCloseDialogueEvent(){
+        CloseDialogueEvent?.Invoke();
+    }
+
+    public static event Action<DialogueContentStruct> StartDialogueEvent;
+    public static void CallStartDialogueEvent(DialogueContentStruct dialogueContent){
+        StartDialogueEvent?.Invoke(dialogueContent);
+    }
 }

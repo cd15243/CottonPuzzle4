@@ -4,5 +4,5 @@ public enum ItemClickDirection
 }
 
 public enum ClickTypes{
-    NONE,SCENECHANGE,H2ACIRCLE,H2ARESET,
+    NONE,SCENECHANGE,H2ACIRCLE,H2ARESET,DIALOGUE,
 }

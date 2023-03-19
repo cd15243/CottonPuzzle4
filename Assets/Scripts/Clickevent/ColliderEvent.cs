@@ -14,6 +14,7 @@ public class ColliderEvent : MonoBehaviour
         clickTypes2Enum.Add("SCENECHANGE",ClickTypes.SCENECHANGE);
         clickTypes2Enum.Add("H2ACIRCLE",ClickTypes.H2ACIRCLE);
         clickTypes2Enum.Add("H2ARESET",ClickTypes.H2ARESET);
+        clickTypes2Enum.Add("DIALOGUE",ClickTypes.DIALOGUE);
     }
 
     // Start is called before the first frame update
@@ -40,7 +41,18 @@ public class ColliderEvent : MonoBehaviour
                             if(hit.transform.gameObject.tag == "SceneTag"){
                                 var switchScene = hit.transform.GetComponent<SwitchScene>();
                                 string sceneName = switchScene.toSceneName;
-                                EventHandler.CallSwitchSceneFun(sceneName);
+                                if(hit.transform.gameObject.name == "Door" && sceneName == "H2A"){
+                                    bool isPass = PlayerPrefs.GetInt("IsPassMinGame",-999) == 1 ;
+                                    if(isPass){
+                                        sceneName = "H3";
+                                    }
+                                    checkDialogueIsOpen();
+                                    EventHandler.CallSwitchSceneFun(sceneName);
+                                }
+                                else{
+                                    checkDialogueIsOpen();
+                                    EventHandler.CallSwitchSceneFun(sceneName);
+                                }
                             }
 
                         break;
@@ -53,13 +65,24 @@ public class ColliderEvent : MonoBehaviour
                     case ClickTypes.H2ARESET:
                         EventHandler.CallH2AResetEvent();
                         break;
+                    case ClickTypes.DIALOGUE:
+                        if(GlobalVariable.isOnDialogue){
+                            EventHandler.CallContinueDialogueEvent();
+                        }
+                        else{
+                            EventHandler.CallDialogueEvent();
+                        }
+                        break;
                     default:
                         break;
                 }
             }
-
-         
         }
+    }
 
+    private void checkDialogueIsOpen(){
+        if(GlobalVariable.isOnDialogue){
+            EventHandler.CallCloseDialogueEvent();
+        }
     }
 }
