@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
 
     private void onStartDialogueEvent(DialogueContentStruct tmpDialogueContent)
     {
+        EventHandler.CallClearCursorEvent();
         dialogueMain.gameObject.SetActive(true);
         dialogueIndex = 0;
         currentDialogueContent = tmpDialogueContent;
@@ -47,6 +48,7 @@ public class DialogueManager : MonoBehaviour
 
     private void onContinueDialogueEvent()
     {
+        EventHandler.CallClearCursorEvent();
         if(currentDialogueContent.content.Count > dialogueIndex){
             content.text = currentDialogueContent.content[dialogueIndex];
             ++dialogueIndex;

@@ -47,4 +47,9 @@ public class EventHandler
     public static void CallStartDialogueEvent(DialogueContentStruct dialogueContent){
         StartDialogueEvent?.Invoke(dialogueContent);
     }
+
+    public static event Action ClearCursorEvent;
+    public static void CallClearCursorEvent(){
+        ClearCursorEvent?.Invoke();
+    }
 }

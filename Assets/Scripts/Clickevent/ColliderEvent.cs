@@ -37,7 +37,7 @@ public class ColliderEvent : MonoBehaviour
                 switch (curClickType)
                 {
                     case ClickTypes.SCENECHANGE:
-                            Debug.Log("name = " + hit.transform.name + "tag = " + hit.transform.gameObject.tag);
+                            // Debug.Log("name = " + hit.transform.name + "tag = " + hit.transform.gameObject.tag);
                             if(hit.transform.gameObject.tag == "SceneTag"){
                                 var switchScene = hit.transform.GetComponent<SwitchScene>();
                                 string sceneName = switchScene.toSceneName;
@@ -57,9 +57,9 @@ public class ColliderEvent : MonoBehaviour
 
                         break;
                     case ClickTypes.H2ACIRCLE:
-                        Debug.Log("name = " + this.name);
+                        // Debug.Log("name = " + this.name);
                         Match match = Regex.Match(this.name, @"\d+");
-                        Debug.Log("index = " + match.Value);
+                        // Debug.Log("index = " + match.Value);
                         EventHandler.CallH2ACIRCLEClickEvent(int.Parse(match.Value));
                         break;
                     case ClickTypes.H2ARESET:

@@ -29,9 +29,9 @@ public class SceneSwitchManager : MonoBehaviour
         // if(SceneManager.GetActiveScene().name != "MainScene"){
         //     yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         // }
-        Debug.Log("StartScene = UI");
+        // Debug.Log("StartScene = UI");
         yield return SceneManager.LoadSceneAsync("UI",LoadSceneMode.Additive);
-        Debug.Log("StartScene = " + sceneName);
+        // Debug.Log("StartScene = " + sceneName);
         yield return LoadSceneSetActive(sceneName);
     }
 
@@ -43,26 +43,27 @@ public class SceneSwitchManager : MonoBehaviour
 
     private void onMyCallSwitchSceneFun(string sceneName)
     {
+        EventHandler.CallClearCursorEvent();
         StartCoroutine(SwitchScene(sceneName));
     }
 
     private IEnumerator SwitchScene(string sceneName){
-        Debug.Log("SwitchScene");
-        Debug.Log("UnloadScene = " + SceneManager.GetActiveScene().name);
+        // Debug.Log("SwitchScene");
+        // Debug.Log("UnloadScene = " + SceneManager.GetActiveScene().name);
         yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-        Debug.Log("StartScene = " + sceneName);
+        // Debug.Log("StartScene = " + sceneName);
         yield return LoadSceneSetActive(sceneName);
     }
 
     private IEnumerator LoadSceneSetActive(string sceneName){
-        Debug.Log("LoadSceneSetActive");
-        Debug.Log("LoadSceneSetActive = " + sceneName);
+        // Debug.Log("LoadSceneSetActive");
+        // Debug.Log("LoadSceneSetActive = " + sceneName);
         yield return SceneManager.LoadSceneAsync(sceneName,LoadSceneMode.Additive);
         // 通过场景名字获取到该场景的 index
         int sceneIndex = SceneManager.GetSceneByName(sceneName).buildIndex;
-        Debug.Log("sceneIndex = " + sceneIndex);
+        // Debug.Log("sceneIndex = " + sceneIndex);
         Scene scene = SceneManager.GetSceneByBuildIndex(sceneIndex);
-        Debug.Log("SetActiveScene = " + scene.name);
+        // Debug.Log("SetActiveScene = " + scene.name);
         SceneManager.SetActiveScene(scene);
     }
 }

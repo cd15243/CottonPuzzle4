@@ -26,7 +26,6 @@ public class DialogueController : MonoBehaviour
     private void onDialogueEvent()
     {
         DialogueContentStruct currentDialogueContent = getCurrentDialogueContent();
-
         GlobalVariable.isOnDialogue = true;
         EventHandler.CallStartDialogueEvent(currentDialogueContent);
     }

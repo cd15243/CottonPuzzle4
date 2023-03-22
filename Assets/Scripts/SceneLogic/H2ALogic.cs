@@ -44,7 +44,7 @@ public class H2ALogic : MonoBehaviour
 
         int res = PlayerPrefs.GetInt("IsPassMinGame",-999);
         if(res == 1){
-            Debug.Log("HAS PASS!!!");
+            Debug.Log("<color=green>HAS PASS!!!</color>");
         }
 
         singleLine = Resources.Load<Sprite>("CIRCLELINE");
@@ -165,7 +165,7 @@ public class H2ALogic : MonoBehaviour
             int res = PlayerPrefs.GetInt("IsPassMinGame",-999);
             if(res == -999){
                 PlayerPrefs.SetInt("IsPassMinGame",1);
-                Debug.Log("PASS!!!");
+                Debug.Log("<color=red>PASS!!!</color>");
             }
         }
     }

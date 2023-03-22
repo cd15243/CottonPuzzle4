@@ -23,7 +23,7 @@ public class ClickTypesDrawer: PropertyDrawer {
         clickTypes = new GUIContent[Enum.GetValues(typeof(ClickTypes)).Length];
         Array clickTypesArray = Enum.GetValues(typeof(ClickTypes));
         for(int i = 0;i < clickTypesArray.Length;++i){
-            Debug.Log(clickTypesArray.GetValue(i));
+            // Debug.Log(clickTypesArray.GetValue(i));
             clickTypes[i] = new GUIContent(clickTypesArray.GetValue(i).ToString());
         }
 

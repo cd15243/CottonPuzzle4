@@ -37,4 +37,9 @@ public class BagManager : Singleton<BagManager>
 
         EventHandler.CallUpdateSingleItemInfoEvent(tmpIndex,tmpInfo);
     }
+
+    public BagSingleItemInfo GetCurrentItemInfo(){
+        BagSingleItemInfo currentItemInfo = bagItemData.BagList[currentIndex];
+        return currentItemInfo;
+    }
 }
