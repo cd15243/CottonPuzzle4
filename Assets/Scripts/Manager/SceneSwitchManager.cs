@@ -53,6 +53,7 @@ public class SceneSwitchManager : MonoBehaviour
         yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
         // Debug.Log("StartScene = " + sceneName);
         yield return LoadSceneSetActive(sceneName);
+        EventHandler.CallSwitchSceneComplete(sceneName);
     }
 
     private IEnumerator LoadSceneSetActive(string sceneName){

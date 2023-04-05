@@ -5,7 +5,8 @@ using UnityEngine;
 public class BagManager : Singleton<BagManager>
 {
     public BagItemDetail_SO bagItemData;
-    public int currentIndex = 0;
+    public AllItemInfo_SO allItemInfo;
+    public int currentIndex = -1;
 
     private void OnEnable() {
         EventHandler.ItemClickDirectionEvent += OnItemClickDirectionEvent;
@@ -16,8 +17,10 @@ public class BagManager : Singleton<BagManager>
     }
 
     private void Start() {
-        BagSingleItemInfo tmpInfo = bagItemData.BagList[currentIndex];
-        EventHandler.CallUpdateSingleItemInfoEvent(currentIndex,tmpInfo);
+        if(bagItemData.BagList.Count > 0 && currentIndex >= 0){
+            BagSingleItemInfo tmpInfo = bagItemData.BagList[currentIndex];
+            EventHandler.CallUpdateSingleItemInfoEvent(currentIndex,tmpInfo);
+        }
     }
 
     private void OnItemClickDirectionEvent(ItemClickDirection itemClickDirection)
@@ -29,7 +32,7 @@ public class BagManager : Singleton<BagManager>
         else if(itemClickDirection == ItemClickDirection.Right){
             ++tmpIndex;
         }
-        if (tmpIndex < 0 || tmpIndex > bagItemData.BagList.Count){
+        if (tmpIndex < 0 || tmpIndex >= bagItemData.BagList.Count){
             return;
         }
         currentIndex = tmpIndex;
@@ -42,4 +45,63 @@ public class BagManager : Singleton<BagManager>
         BagSingleItemInfo currentItemInfo = bagItemData.BagList[currentIndex];
         return currentItemInfo;
     }
+
+    public bool IsHasItemInBagByItemId(int id){
+        bool res = false;
+
+        foreach(BagSingleItemInfo singleItemInfo in bagItemData.BagList){
+            if(singleItemInfo.itemID == id){
+                res = true;
+                break;
+            }
+        }
+
+        return res;
+    }
+
+    public bool AddItemToBag(int itemId,int num){
+        bool res = false;
+
+        for(int i = 0;i < bagItemData.BagList.Count; ++i){
+            if(bagItemData.BagList[i].itemID == itemId){
+                bagItemData.BagList[i].itemNum += num;
+                res = true;
+                break;
+            }
+        }
+
+        if(!res){
+            BagSingleItemInfo tmpData = allItemInfo.GetSingleItemInfo(itemId);
+            tmpData.itemNum = num;
+            BagSingleItemInfo newItem = new BagSingleItemInfo(tmpData);
+            bagItemData.BagList.Add(newItem);
+            res = true;
+        }
+
+        if(currentIndex == -1){
+            currentIndex = 0;
+            Debug.Log("更新1");
+            EventHandler.CallUpdateSingleItemInfoEvent(currentIndex,bagItemData.BagList[0]);
+        }
+
+        return res;
+    }
+
+    public bool DeleteItemFromBag(int itemId, int num){
+        bool res = false;
+
+        for(int i = 0;i < bagItemData.BagList.Count; ++i){
+            if(bagItemData.BagList[i].itemID == itemId){
+                bagItemData.BagList[i].itemNum -= num;
+                if(bagItemData.BagList[i].itemNum <= 0){
+                    bagItemData.BagList.Remove(bagItemData.BagList[i]);
+                }
+                res = true;
+                break;
+            }
+        }
+
+        return res;
+    }
+
 }

@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b6b281d94102f458199b644830741b, type: 3}
   m_Name: BagItemDetail_SO
   m_EditorClassIdentifier: 
-  BagList:
-  - itemID: 0
-    itemName: "\u94A5\u5319"
-    sprite: {fileID: 21300000, guid: 1caf15346fd4fba4ebf08b39ffa535b6, type: 3}
-  - itemID: 1
-    itemName: "\u8239\u7968"
-    sprite: {fileID: 21300000, guid: 08dee347fa2b73c4692a39516fc7c3b9, type: 3}
+  BagList: []

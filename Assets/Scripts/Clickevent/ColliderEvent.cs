@@ -15,6 +15,8 @@ public class ColliderEvent : MonoBehaviour
         clickTypes2Enum.Add("H2ACIRCLE",ClickTypes.H2ACIRCLE);
         clickTypes2Enum.Add("H2ARESET",ClickTypes.H2ARESET);
         clickTypes2Enum.Add("DIALOGUE",ClickTypes.DIALOGUE);
+        clickTypes2Enum.Add("ITEM",ClickTypes.ITEM);
+        clickTypes2Enum.Add("MAIL",ClickTypes.MAIL);
     }
 
     // Start is called before the first frame update
@@ -31,50 +33,63 @@ public class ColliderEvent : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             ClickTypes curClickType;
             clickTypes2Enum.TryGetValue(clickTypes,out curClickType);
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if(hit.collider != null && hit.collider.name == this.name)
-            {
-                switch (curClickType)
+            RaycastHit2D[] hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            for(int i = 0;i < hits.Length;++i){
+                RaycastHit2D hit = hits[i];
+                if(hit.collider != null && hit.collider.name == this.name)
                 {
-                    case ClickTypes.SCENECHANGE:
-                            // Debug.Log("name = " + hit.transform.name + "tag = " + hit.transform.gameObject.tag);
-                            if(hit.transform.gameObject.tag == "SceneTag"){
-                                var switchScene = hit.transform.GetComponent<SwitchScene>();
-                                string sceneName = switchScene.toSceneName;
-                                if(hit.transform.gameObject.name == "Door" && sceneName == "H2A"){
-                                    bool isPass = PlayerPrefs.GetInt("IsPassMinGame",-999) == 1 ;
-                                    if(isPass){
-                                        sceneName = "H3";
+                    switch (curClickType)
+                    {
+                        case ClickTypes.SCENECHANGE:
+                                // Debug.Log("name = " + hit.transform.name + "tag = " + hit.transform.gameObject.tag);
+                                if(hit.transform.gameObject.tag == "SceneTag"){
+                                    var switchScene = hit.transform.GetComponent<SwitchScene>();
+                                    string sceneName = switchScene.toSceneName;
+                                    if(hit.transform.gameObject.name == "Door" && sceneName == "H2A"){
+                                        bool isPass = PlayerPrefs.GetInt("IsPassMinGame",-999) == 1 ;
+                                        if(isPass){
+                                            sceneName = "H3";
+                                        }
+                                        checkDialogueIsOpen();
+                                        EventHandler.CallSwitchSceneFun(sceneName);
                                     }
-                                    checkDialogueIsOpen();
-                                    EventHandler.CallSwitchSceneFun(sceneName);
+                                    else{
+                                        checkDialogueIsOpen();
+                                        EventHandler.CallSwitchSceneFun(sceneName);
+                                    }
                                 }
-                                else{
-                                    checkDialogueIsOpen();
-                                    EventHandler.CallSwitchSceneFun(sceneName);
-                                }
-                            }
 
-                        break;
-                    case ClickTypes.H2ACIRCLE:
-                        // Debug.Log("name = " + this.name);
-                        Match match = Regex.Match(this.name, @"\d+");
-                        // Debug.Log("index = " + match.Value);
-                        EventHandler.CallH2ACIRCLEClickEvent(int.Parse(match.Value));
-                        break;
-                    case ClickTypes.H2ARESET:
-                        EventHandler.CallH2AResetEvent();
-                        break;
-                    case ClickTypes.DIALOGUE:
-                        if(GlobalVariable.isOnDialogue){
-                            EventHandler.CallContinueDialogueEvent();
-                        }
-                        else{
-                            EventHandler.CallDialogueEvent();
-                        }
-                        break;
-                    default:
-                        break;
+                            break;
+                        case ClickTypes.H2ACIRCLE:
+                            // Debug.Log("name = " + this.name);
+                            Match match = Regex.Match(this.name, @"\d+");
+                            // Debug.Log("index = " + match.Value);
+                            EventHandler.CallH2ACIRCLEClickEvent(int.Parse(match.Value));
+                            break;
+                        case ClickTypes.H2ARESET:
+                            EventHandler.CallH2AResetEvent();
+                            break;
+                        case ClickTypes.DIALOGUE:
+                            if(GlobalVariable.isOnDialogue){
+                                EventHandler.CallContinueDialogueEvent();
+                            }
+                            else{
+                                EventHandler.CallDialogueEvent();
+                            }
+                            break;
+
+                        case ClickTypes.ITEM:
+                            int itemId = -1;
+                            itemId = hit.collider.transform.GetComponent<SingleItem>().itemId;
+                            EventHandler.CallInteractWithItem(itemId);
+                            break;
+
+                        case ClickTypes.MAIL:
+                            EventHandler.CallInteractWithMail();
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

@@ -10,6 +10,11 @@ public class EventHandler
         SwitchSceneFun?.Invoke(sceneName);
     }
 
+    public static event Action<string> SwitchSceneComplete;
+    public static void CallSwitchSceneComplete(string sceneName){
+        SwitchSceneComplete?.Invoke(sceneName);
+    }
+
     public static event Action<ItemClickDirection> ItemClickDirectionEvent;
     public static void CallItemClickDirectionEvent(ItemClickDirection itemClickDirection){
         ItemClickDirectionEvent?.Invoke(itemClickDirection);
@@ -51,5 +56,25 @@ public class EventHandler
     public static event Action ClearCursorEvent;
     public static void CallClearCursorEvent(){
         ClearCursorEvent?.Invoke();
+    }
+
+    public static event Action<int> InteractWithItem;
+    public static void CallInteractWithItem(int itemId){
+        InteractWithItem?.Invoke(itemId);
+    }
+
+    public static event Action InteractWithMail;
+    public static void CallInteractWithMail(){
+        InteractWithMail?.Invoke();
+    }
+
+    public static event Action MailOpen;
+    public static void CallMailOpen(){
+        MailOpen?.Invoke();
+    }
+
+    public static event Action MailClose;
+    public static void CallMailClose(){
+        MailClose?.Invoke();
     }
 }

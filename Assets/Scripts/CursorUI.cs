@@ -42,7 +42,7 @@ public class CursorUI : MonoBehaviour
 
     private void onCallClearCursorEvent()
     {
-        Debug.Log("onCallClearCursorEvent");
+        // Debug.Log("onCallClearCursorEvent");
         isHasItem = false;
         cursorImage.gameObject.SetActive(false);
     }

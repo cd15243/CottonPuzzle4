@@ -213,7 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bagItemData: {fileID: 11400000, guid: a5d41fd962827004f89e0e3b95ad6954, type: 2}
-  currentIndex: 0
+  allItemInfo: {fileID: 11400000, guid: d334ee64ec43cfd49b00b24e160923b1, type: 2}
+  currentIndex: -1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

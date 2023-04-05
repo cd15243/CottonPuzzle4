@@ -32,7 +32,7 @@ public class DialogueController : MonoBehaviour
 
     private DialogueContentStruct getCurrentDialogueContent(){
         int index = 0;
-        checkIsHasShipTicket();
+        isHasShipTicket = checkIsHasShipTicket();
         if(isHasShipTicket){
             index = 1;
         }
@@ -42,7 +42,8 @@ public class DialogueController : MonoBehaviour
 
     private bool checkIsHasShipTicket(){
         bool res = false;
-
+        int boatItemIndex = 1;
+        res = BagManager.Instance.IsHasItemInBagByItemId(boatItemIndex);
         return res;
     }
 }
