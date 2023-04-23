@@ -77,4 +77,9 @@ public class EventHandler
     public static void CallMailClose(){
         MailClose?.Invoke();
     }
+
+    public static event Action GameRestartEvent;
+    public static void CallGameRestartEvent(){
+        GameRestartEvent?.Invoke();
+    }
 }

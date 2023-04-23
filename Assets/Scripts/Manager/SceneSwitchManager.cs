@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,10 +9,12 @@ public class SceneSwitchManager : MonoBehaviour
 
     private void OnEnable() {
         EventHandler.SwitchSceneFun += onMyCallSwitchSceneFun;
+        EventHandler.GameRestartEvent += onGameRestartEvent;
     }
 
     private void OnDisable() {
         EventHandler.SwitchSceneFun -= onMyCallSwitchSceneFun;
+        EventHandler.GameRestartEvent -= onGameRestartEvent;
     }
 
     protected void Awake() {
@@ -38,7 +39,7 @@ public class SceneSwitchManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void onMyCallSwitchSceneFun(string sceneName)
@@ -66,5 +67,10 @@ public class SceneSwitchManager : MonoBehaviour
         Scene scene = SceneManager.GetSceneByBuildIndex(sceneIndex);
         // Debug.Log("SetActiveScene = " + scene.name);
         SceneManager.SetActiveScene(scene);
+    }
+
+    private void onGameRestartEvent()
+    {
+        onMyCallSwitchSceneFun(startSceneName);
     }
 }
