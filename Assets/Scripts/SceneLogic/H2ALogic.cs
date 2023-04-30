@@ -47,7 +47,7 @@ public class H2ALogic : MonoBehaviour
             Debug.Log("<color=green>HAS PASS!!!</color>");
         }
 
-        singleLine = Resources.Load<Sprite>("CIRCLELINE");
+        singleLine = Resources.Load<Sprite>("Pic/" + "CIRCLELINE");
         createLines();
         InitCircle();
     }
@@ -183,7 +183,7 @@ public class H2ALogic : MonoBehaviour
             Transform tmpCircle = circleTmpGroup.Find("CircleTmpSign" + (i+1));
             tmpCircle.gameObject.SetActive(true);
             if(index != -1){
-                Sprite tmpSprite = Resources.Load<Sprite>("SS_0" + index);
+                Sprite tmpSprite = Resources.Load<Sprite>("Pic/" + "SS_0" + index);
                 tmpCircle.GetComponent<SpriteRenderer>().sprite = tmpSprite;                
             }
             else{
